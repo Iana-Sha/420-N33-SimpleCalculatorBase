@@ -12,6 +12,9 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+
+            StringBuilder resultString = new StringBuilder();
+
             try
             {
                 //Class to convert user input
@@ -26,8 +29,20 @@ namespace SimpleCalculator
 
                 double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
 
-                Console.WriteLine(result);
+                //Change 2 - Iana 
+                //Formatting and displaying like that: The value 1 plus the value 2 is equal to 3.
+                                
+                string formatedResult = result.ToString("#.##");
+                string oper = CalculatorEngine.op;
 
+                resultString.AppendFormat("The value {0} {1} the value {2} is equal to {3}",
+                                          firstNumber, 
+                                          oper, 
+                                          secondNumber, 
+                                          formatedResult);
+                                
+                Console.WriteLine(resultString);
+               
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -35,4 +50,3 @@ namespace SimpleCalculator
         }
     }
 }
-AAA
