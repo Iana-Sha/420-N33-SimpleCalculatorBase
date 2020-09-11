@@ -12,34 +12,46 @@ namespace CalculatorLibrary
 
         public double Calculate(string argOperation, double argFirstNumber, double argSecondNumber)
         {
+            //change 2 - Adam
+            //checks if the operation is a correct operation and if not, ask the user to enter again
             double result;
+            string[] checkString = { "add", "+", "substract", "-", "multiply", "*", "divide", "/" };
 
-            switch (argOperation.ToLower())
-            {
-                case "add":
-                case "+":
-                    result = argFirstNumber + argSecondNumber;
-                    op = "plus";
-                    break;
-                case "subtract":
-                case "-":
-                    result = argFirstNumber - argSecondNumber;
-                    op = "minus";
-                    break;
-                case "multiply":
-                case "*":
-                    result = argFirstNumber * argSecondNumber;
-                    op = "multiplied by";
-                    break;
-                case "divide":
-                case "/":
-                    result = argFirstNumber / argSecondNumber;
-                    op = "divided by";
-                    break;
-                default:
-                    throw new InvalidOperationException("Specified operation is not recognized.");
+            if (checkString.Contains(argOperation))
+            { 
+                switch (argOperation.ToLower())
+                {
+                    case "add":
+                    case "+":
+                        result = argFirstNumber + argSecondNumber;
+                        op = "plus";
+                        break;
+                    case "subtract":
+                    case "-":
+                        result = argFirstNumber - argSecondNumber;
+                        op = "minus";
+                        break;
+                    case "multiply":
+                    case "*":
+                        result = argFirstNumber * argSecondNumber;
+                        op = "multiplied by";
+                        break;
+                    case "divide":
+                    case "/":
+                        result = argFirstNumber / argSecondNumber;
+                        op = "divided by";
+                        break;
+                    default:
+                        throw new InvalidOperationException("Specified operation is not recognized.");
+                }
+                return result;
             }
-            return result;
+            else
+            {
+                Console.WriteLine("Please enter '+' or 'add' to indicate your operation");
+                Console.WriteLine("(ex: +, add, -, minus, *, multiply, /, divide)");
+                return Calculate(Console.ReadLine(), argFirstNumber, argSecondNumber);
+            }
         }
     }
 }
