@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using CalculatorLibrary;
+using SimpleCalculatorLibrary;
 
 namespace SimpleCalculator
 {
@@ -22,7 +22,7 @@ namespace SimpleCalculator
                 InputConverter inputConverter = new InputConverter();
 
                 //Class to perform actual calculations
-                CalculatorUtil calculatorEngine = new CalculatorUtil();
+                CalculatorEngine calculatorEngine = new CalculatorEngine();
 
                 double firstNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
                 double secondNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
@@ -34,7 +34,7 @@ namespace SimpleCalculator
                 //Formatting and displaying like that: The value 1 plus the value 2 is equal to 3.
                                 
                 string formatedResult = result.ToString("#.##");
-                string oper = CalculatorUtil.op;
+                string oper = CalculatorEngine.op;
 
                 resultString.AppendFormat("The value {0} {1} the value {2} is equal to {3}",
                                           firstNumber, 
