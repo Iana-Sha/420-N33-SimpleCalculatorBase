@@ -12,10 +12,10 @@ namespace CalculatorLibrary
 
         public double Calculate(string argOperation, double argFirstNumber, double argSecondNumber)
         {
-            //change 2 - Adam
+            //change 1 - Adam
             //checks if the operation is a correct operation and if not, ask the user to enter again
             double result;
-            string[] checkString = { "add", "+", "substract", "-", "multiply", "*", "divide", "/" };
+            string[] checkString = { "add", "+", "substract", "-", "multiply", "*", "divide", "/", "exponent", "^" };
 
             if (checkString.Contains(argOperation))
             { 
@@ -41,6 +41,11 @@ namespace CalculatorLibrary
                         result = argFirstNumber / argSecondNumber;
                         op = "divided by";
                         break;
+                    case "^": //Change 4 - Adam
+                    case "exponent": //adds the to the power of component to the calculator
+                        result = Math.Pow(argFirstNumber, argSecondNumber);
+                        op = "raised by";
+                        break;
                     default:
                         throw new InvalidOperationException("Specified operation is not recognized.");
                 }
@@ -49,7 +54,7 @@ namespace CalculatorLibrary
             else
             {
                 Console.WriteLine("Please enter '+' or 'add' to indicate your operation");
-                Console.WriteLine("(ex: +, add, -, minus, *, multiply, /, divide)");
+                Console.WriteLine("(ex: +, add, -, minus, *, multiply, /, divide, ^, exponent)");
                 return Calculate(Console.ReadLine(), argFirstNumber, argSecondNumber);
             }
         }
