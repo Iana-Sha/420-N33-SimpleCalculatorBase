@@ -14,40 +14,72 @@ namespace SimpleCalculator
         static void Main(string[] args)
         {
 
-            StringBuilder resultString = new StringBuilder();
+            
 
-            try
+            bool endProgram = false;
+
+
+            do
             {
-                //Class to convert user input
-                InputConverter inputConverter = new InputConverter();
+                try
+                {
+                    
+                    StringBuilder resultString = new StringBuilder();
 
-                //Class to perform actual calculations
-                CalculatorUtil calculatorEngine = new CalculatorUtil();
+                    //Class to convert user input
+                    InputConverter inputConverter = new InputConverter();
 
-                double firstNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
-                double secondNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
-                string operation = Console.ReadLine();
+                    //Class to perform actual calculations
+                    CalculatorUtil calculatorEngine = new CalculatorUtil();
 
-                double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
 
-                //Change 2 - Iana 
-                //Formatting and displaying like that: The value 1 plus the value 2 is equal to 3.
-                                
-                string formatedResult = result.ToString("#.##");
-                string oper = CalculatorUtil.op;
+                    Console.WriteLine("Enter first number");
+                    double firstNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
+                    
+                    Console.WriteLine("Enter second number");
+                    double secondNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
 
-                resultString.AppendFormat("The value {0} {1} the value {2} is equal to {3}",
-                                          firstNumber, 
-                                          oper, 
-                                          secondNumber, 
-                                          formatedResult);
-                                
-                Console.WriteLine(resultString);
-               
-            } catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                    Console.WriteLine("Enter operator");
+                    string operation = Console.ReadLine();
+
+
+
+                    double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
+
+                    //Change 2 - Iana 
+                    //Formatting and displaying like that: The value 1 plus the value 2 is equal to 3.
+
+                    string formatedResult = result.ToString("#.##");
+                    string oper = CalculatorUtil.op;
+
+                    resultString.AppendFormat("The value {0} {1} the value {2} is equal to {3}",
+                                              firstNumber,
+                                              oper,
+                                              secondNumber,
+                                              formatedResult);
+
+                    Console.WriteLine(resultString);
+                    
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                Console.WriteLine("If you want to exit the program type 'q' or 'Q'. Else, press ENTER.");
+                string exitProgram = Console.ReadLine();
+
+                if (exitProgram == "q" || exitProgram == "Q")
+                {
+                    endProgram = true;
+                }
+                else Console.WriteLine();
             }
+            while (endProgram == false);
+
+
+
         }
     }
 }
